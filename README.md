@@ -21,72 +21,65 @@ Application de suivi de grossesse personnalisée — développée avec Next.js, 
 
 ## 📁 Structure du projet
 
-\`\`\`
+```
 safe-pregnancy/
 ├── prisma/
-│ ├── schema.prisma # Schéma de la base de données
-│ └── migrations/ # Migrations versionnées
+│   ├── schema.prisma        # Schéma de la base de données
+│   └── migrations/          # Migrations versionnées
 ├── src/
-│ ├── app/
-│ │ ├── api/ # API Routes (back-end)
-│ │ │ ├── auth/ # register, login, logout
-│ │ │ ├── user/ # profil, mot de passe
-│ │ │ ├── saisies/ # suivi de santé
-│ │ │ └── rendez-vous/ # rendez-vous médicaux
-│ │ ├── dashboard/ # Pages du tableau de bord
-│ │ ├── login/ # Page connexion
-│ │ └── register/ # Page inscription
-│ ├── components/ # Composants React réutilisables
-│ ├── data/ # Données statiques (conseils par semaine)
-│ └── lib/ # Utilitaires (Prisma client)
-└── middleware.js # Protection des routes
-\`\`\`
+│   ├── app/
+│   │   ├── api/             # API Routes (back-end)
+│   │   │   ├── auth/        # register, login, logout
+│   │   │   ├── user/        # profil, mot de passe
+│   │   │   ├── saisies/     # suivi de santé
+│   │   │   └── rendez-vous/ # rendez-vous médicaux
+│   │   ├── dashboard/       # Pages du tableau de bord
+│   │   ├── login/           # Page connexion
+│   │   └── register/        # Page inscription
+│   ├── components/          # Composants React réutilisables
+│   ├── data/                # Données statiques (conseils par semaine)
+│   └── lib/                 # Utilitaires (Prisma client)
+└── middleware.js             # Protection des routes
+```
 
 ## 🚀 Installation
 
 ### Prérequis
-
 - Node.js 18+
 - MySQL (XAMPP ou autre)
 
 ### 1. Clone le projet
-
-\`\`\`bash
+```bash
 git clone https://github.com/RJAAY/safe-pregnancy.git
 cd safe-pregnancy
-\`\`\`
+```
 
 ### 2. Installe les dépendances
-
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 ### 3. Configure les variables d'environnement
-
-\`\`\`bash
+```bash
 cp .env.example .env
-\`\`\`
+```
 Puis modifie `.env` avec tes informations de connexion MySQL.
 
 ### 4. Crée la base de données
-
 Dans phpMyAdmin, crée une base de données nommée `safe_pregnancy`.
 
 ### 5. Lance les migrations
-
-\`\`\`bash
+```bash
 npx prisma migrate dev
-\`\`\`
+```
 
 ### 6. Lance le projet
-
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 Ouvre [http://localhost:3000](http://localhost:3000) dans ton navigateur.
 
-## Auteure
+## 👩‍💻 Auteure
 
 Développé par **Ranya JAIDANE**
