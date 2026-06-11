@@ -1,26 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-blush: #f9e8e8;
+  --color-blush-mid: #f2c9c9;
+  --color-blush-deep: #e8a5a5;
+  --color-rose: #d4787a;
+  --color-rose-dark: #b85c5e;
+
+  --color-cream: #fdfaf6;
+  --color-cream-warm: #f7f0e6;
+  --color-sand: #ead9c6;
+
+  --color-sage: #9db5a0;
+  --color-sage-light: #c8d9cb;
+  --color-sage-dark: #6e9174;
+
+  --color-gold: #c9a96e;
+  --color-gold-light: #e8d5b0;
+
+  --color-text-dark: #3d2c2c;
+  --color-text-mid: #6b4f4f;
+  --color-text-light: #9e7e7e;
+
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+
+  --radius-pill: 9999px;
+  --radius-xl: 32px;
+  --radius-lg: 20px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-cream);
+    color: var(--color-text-dark);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-tag {
+    @apply inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full mb-4
+           text-xs font-semibold uppercase tracking-widest;
+    background-color: var(--color-blush);
+    color: var(--color-rose-dark);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+           font-semibold text-white border-none cursor-pointer
+           no-underline transition-all duration-300;
+    background-color: var(--color-rose);
+    box-shadow: 0 4px 16px rgba(212, 120, 122, 0.35);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-rose-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 120, 122, 0.4);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+           font-semibold bg-transparent cursor-pointer
+           no-underline transition-all duration-300;
+    color: var(--color-rose);
+    border: 2px solid var(--color-blush-deep);
+  }
+  .btn-outline:hover {
+    background-color: var(--color-blush);
+    border-color: var(--color-rose);
+    transform: translateY(-2px);
+  }
 }

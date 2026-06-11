@@ -1,0 +1,60 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  prenom     String       @db.VarChar(100)
+  email      String       @unique @db.VarChar(255)
+  password   String       @db.VarChar(255)
+  dpa        DateTime     @db.Date
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+
+  // Relations
+  saisies      Saisie[]
+  rendezVous   RendezVous[]
+
+  @@map("users")
+}
+
+model Saisie {
+  id          Int       @id @default(autoincrement())
+  userId      Int       @map("user_id")
+  poids       Decimal?  @db.Decimal(5, 2)
+  tension     String?   @db.VarChar(20)
+  humeur      String?   @db.VarChar(50)
+  symptomes   Json?
+  dateSaisie  DateTime  @db.Date @map("date_saisie")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  // Relation vers User
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Une seule saisie par utilisatrice par jour
+  @@unique([userId, dateSaisie])
+  @@map("saisies")
+}
+
+model RendezVous {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  type      String   @db.VarChar(150)
+  dateRdv   DateTime @db.Date @map("date_rdv")
+  heure     String   @db.VarChar(10)
+  medecin   String?  @db.VarChar(150)
+  lieu      String?  @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relation vers User
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("rendez_vous")
+}
